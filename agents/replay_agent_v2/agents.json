@@ -1,0 +1,24 @@
+{
+  "agents": [
+    {
+      "key": "replay_agent_v1",
+      "name": "Replay Agent V1",
+      "path": "agents/replay_agent_v1"
+    },
+    {
+      "key": "replay_agent_v2",
+      "name": "Replay Agent V2",
+      "path": "agents/replay_agent_v2"
+    },
+    {
+      "key": "replay_agent_v3",
+      "name": "Replay Agent V3",
+      "path": "agents/replay_agent_v3"
+    },
+    {
+      "key": "replay_agent_v4",
+      "name": "Replay Agent V4",
+      "path": "agents/replay_agent_v4"
+    }
+  ]
+}
