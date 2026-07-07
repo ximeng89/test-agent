@@ -1,0 +1,51 @@
+name: assets-interface
+description: 资产图片获取技能 - 从PLM媒体服务下载产品图片到本地缓存（真实API调用，非Mock）
+version: 1.0.0
+author: Development Team
+category: media
+
+install:
+  - pip install requests tenacity
+
+requires:
+  python_version: ">=3.10"
+  env_vars:
+    - name: PLM_CLIENT_ID
+      description: PLM API客户端ID
+      required: true
+    - name: PLM_CLIENT_SECRET
+      description: PLM API客户端密钥
+      required: true
+    - name: PLM_AUDIENCE
+      description: PLM API受众（可选，默认"https://fashionbox.link.mylectra.com"）
+      required: false
+
+healthCheck:
+  command: python scripts/get_assets.py --check
+  expected_output: "{\"status\": \"healthy\""
+
+skill:
+  entry: scripts/get_assets.py
+  parameters:
+    media_id:
+      type: string
+      required: false
+      description: 单个媒体资源ID
+    media_ids:
+      type: array
+      required: false
+      description: 媒体资源ID列表
+    sku_list:
+      type: array
+      required: false
+      description: SKU列表（从其中提取媒体ID）
+
+runtime:
+  type: python
+  version: "3.10+"
+
+output_format: json
+
+configuration:
+  cache_dir: "~/.openclaw/cache/assets"
+  max_concurrent_downloads: 5
